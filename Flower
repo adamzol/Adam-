@@ -1,0 +1,73 @@
+
+/**
+ * Program description: 
+ * Programmer: Adam bin Zolkhoari
+ * Date: 22 February 2024
+ */
+public class Flower
+{
+    // Declaration of the instance variable
+    private String name;
+    private String colour;
+    private double price;
+    private int quantity;
+
+//Constructor parameter for objects of class Flower
+    public Flower(String name, String colour, double price, int quantity )
+    {
+ this.name = name;
+ this.colour = colour;
+ this.price = price;
+ this.quantity = quantity; 
+}
+
+//Constructor without parameter for objects of class Flower
+      public Flower()
+      {
+ this.name = "";
+ this.colour = "";
+ this.price = 0;
+ this.quantity = 0;
+}
+ 
+ //Accessor method (for each data member)
+ public String getName(){
+ return name;
+ }
+
+ public String getColour(){
+ return colour;
+ }
+ 
+ public double getPrice(){
+ return price;
+ }
+ 
+ public int getQuantity(){
+ return quantity;
+ }
+      
+//Mutators method (that sets all data members)
+ public void setName(String name) {
+ this.name = name;
+ }
+
+  public void setColour(String colour) {
+ this.colour = colour;
+ }
+ 
+  public void setPrice(double price){
+ this.price = price;
+ }
+ 
+ public void setQuantity(int quantity) {
+ this.quantity = quantity;
+ }
+
+ //toString() method ( displays all information about the object )
+ public String toString(){
+ return "Name:" + name + "\nColours:" + colour + "\nPrice: " + price + "\nQuantity:" + quantity;
+
+}
+
+}
