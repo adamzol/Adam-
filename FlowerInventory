@@ -1,0 +1,95 @@
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class FlowerShop {
+    private Flower[] inventory;
+
+    //The size of the arraay
+    public FlowerShop() {
+        this.inventory = new Flower[10];
+    }
+
+    // The Details of the flowers
+    public void addFlowersToInventory() {
+        inventory[0] = new Flower("Rose", "Red", 3 , 10);
+        inventory[1] = new Flower("Sunflower", "Yellow", 6 , 15);
+        inventory[2] = new Flower("Daisy", "White", 9, 20);
+        inventory[3] = new Flower("Orchid", "Purple", 15, 25);
+        inventory[4] = new Flower("Tulip", "Pink", 7, 6);
+        inventory[5] = new Flower("Lily", "Red", 9, 8);
+        inventory[6] = new Flower("Hydrangea", "Purple", 8, 7);
+        inventory[7] = new Flower("Peony", "Pink", 7, 9);
+        inventory[8] = new Flower("Daffodil", "Yellow", 9, 12);
+        inventory[9] = new Flower("Carnation", "Pink", 6, 15);
+    }
+
+    
+    //Display all details of flowers
+    public void displayInventory() {
+        System.out.println("\nFlower Inventory:");
+        for (Flower flower : inventory) {
+            System.out.println(flower);
+        }
+    }
+
+    
+    //To calculate the price of the flowers
+    public double calculatetotalprice() {
+        double totalprice = 0;
+        for (Flower flower : inventory) {
+            totalprice += flower.getPrice() * flower.getQuantity();
+        }
+        return totalprice;
+    }
+
+    
+    //For user to search a specific flower
+    public void searchFlowerByName(String name) {
+        boolean found = false;
+        for (Flower flower : inventory) {
+            if (flower.getName().equalsIgnoreCase(name)) {
+                System.out.println("Flower found:\n" + flower);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Flower not found.");
+        }
+    }
+
+    
+    //To update the flower for restocked
+    public void restockFlower(String name, int quantityToAdd) {
+        for (Flower flower : inventory) {
+            if (flower.getName().equalsIgnoreCase(name)) {
+                flower.setQuantity(flower.getQuantity() + quantityToAdd);
+                System.out.println("Restocked " + quantityToAdd + " " + flower.getName());
+                return;
+            }
+        }
+        System.out.println("Flower not found for restocking.");
+    }
+
+    //Display all deatils
+    public static void main(String[] args) {
+        FlowerShop flowerShop = new FlowerShop();
+        flowerShop.addFlowersToInventory();
+        flowerShop.displayInventory();
+
+        double totalValue = flowerShop.calculatetotalprice();
+        DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println("\nTotal Price of Inventory: RM" + df.format(totalValue));
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter flower name to search: ");
+        String searchName = scanner.nextLine();
+        flowerShop.searchFlowerByName(searchName);
+
+        System.out.print("\nEnter flower name to restock: ");
+        String restockName = scanner.nextLine();
+        System.out.print("Enter quantity to add: ");
+        int restockQuantity = scanner.nextInt();
+        flowerShop.restockFlower(restockName, restockQuantity);
+    }
+}
